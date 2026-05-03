@@ -39,7 +39,7 @@ yay -S wlogout # Or use your favorite AUR helper
 
 To use this dotfiles, you can clone this repo and move the directory accordingly
 ```bash
-git clone https://github.com/KLevnDarama/niri-dotfiles/
+git clone https://github.com/KLevnDarama/niri-dotfiles/ --depth 1
 cd niri-dotfiles/
 
 mkdir ~/.config
