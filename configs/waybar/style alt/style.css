@@ -1,0 +1,192 @@
+/* colors */
+@define-color white #efefef;
+@define-color red #ff25a5;
+@define-color orange #ffaa00;
+@define-color yellow #efef00;
+@define-color green #00ff7b;
+@define-color blue #71acfc;
+
+@define-color background0 #25252f;
+@define-color background1 #515766;
+@define-color background2 #2f2f3b;
+
+@define-color foreground0 @white;
+@define-color foreground1 @background0;
+@define-color selected @blue;
+
+* {
+   font: bold 13px "FiraCode Nerd Font", monospace;
+   color: @foreground0;
+   min-height: 0;
+   min-width: 0;
+   animation: none;
+}
+
+/** modules **/
+.modules-left,
+.modules-center,
+.modules-right {
+   min-height: 2.35rem; /* height */
+   border-radius: 1.5rem;
+   background: @background2;
+   border: 1px solid @background1;
+}
+.modules-left {
+   margin: 9px 0 0 7px;
+}
+.modules-center {
+   margin: 9px 0 0 0;
+   padding: 0 1.2rem;
+}
+.modules-right {
+   margin: 9px 7px 0 0;
+   padding-left: 1.2rem;
+}
+
+/** single module **/
+#tray,
+#backlight,
+#pulseaudio,
+#clock {
+   margin-right: 1rem; /* modules spacing */
+}
+
+#network, #battery {
+   margin-right: 0.5rem;
+}
+
+#memory, #temperature {
+   margin-left: 1rem;
+}
+
+/* network */
+#network {
+   padding: 0 1.5rem; /* left-right padding */
+   border-radius: 1.5rem;
+}
+#network.linked,
+#network.ethernet,
+#network.wifi {
+   color: @foreground1;
+   background: @green;
+}
+
+@keyframes blink {
+to {
+   color: @foreground1;
+   background: @orange;
+}
+}
+#network.disabled,
+#network.disconnected {
+   color: @foreground1;
+   background: @red;
+   animation: blink;
+   animation-duration: 2s;
+   animation-timing-function: steps(30);
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
+/* battery */
+#battery {
+   padding: 0 1rem; /* left-right padding */
+   border-radius: 1.5rem;
+   color: @foreground1;
+}
+
+#battery.full {
+   background: @green;
+}
+#battery.normal {
+   background: @blue;
+}
+#battery.warning {
+   background: @orange;
+}
+#battery.critical {
+   background: @red;
+   animation: blink;
+   animation-duration: 2s;
+   animation-timing-function: steps(30);
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
+@keyframes charging {
+to {
+   background: @green;
+}
+}
+#battery.charging {
+   animation: charging;
+   animation-duration: 2s;
+   animation-timing-function: steps(30);
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
+/* menu */
+#custom-power {
+   padding: 0 0.635em 0 0.9rem; /* left-right padding */
+   border-radius: 1.5rem;
+   color: @foreground1;
+   background: @red;
+}
+
+/* niri/window */
+#window {
+   border-radius: 1.5rem;
+   padding-right: 1.2rem;
+   margin-left: 1rem;
+}
+#window label {
+   color: #fff;
+}
+window#waybar {
+   background: transparent;
+}
+window#waybar.empty #window {
+   padding: 0;
+   margin: 0;
+   background: transparent;
+   border: 0 none transparent;
+}
+
+/* niri/workspaces */
+#workspaces {
+   background: @background0;
+   border-right-width: 1px;
+   border-right-style: solid;
+   border-color: @background1;
+   border-radius: 1.5rem;
+}
+
+#workspaces button {
+   padding: 0 0.9rem; /* left-right padding */
+   border-radius: 1.5rem;
+   min-width: 0;
+   transition: background 300ms ease-out;
+   transition: border 300ms ease-out;
+}
+#workspaces button:hover {
+   border: 1px solid @background1;
+}
+#workspaces button.focused {
+   background: @selected;
+}
+#workspaces button.focused:hover {
+   border: 1px solid transparent;
+}
+#workspaces button.focused label {
+   color: @foreground1;
+}
+
+/** tooltip **/
+tooltip {
+   background: @background0;
+}
+tooltip label {
+   padding: 0.25rem;
+   font-weight: 600;
+}

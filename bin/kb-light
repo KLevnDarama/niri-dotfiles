@@ -1,0 +1,17 @@
+#!/bin/bash
+
+kb_brightness=$(brightnessctl --device asus::kbd_backlight get)
+kb_max_bright=$(brightnessctl --device asus::kbd_backlight max)
+next_brightness=$( echo "$kb_brightness" + 1 | bc)
+if [ "$next_brightness" -gt $kb_max_bright ]; then
+   next_brightness=0
+fi
+
+brightnessctl --device asus::kbd_backlight set $next_brightness
+
+progress=$(echo "scale=3; $next_brightness / $kb_max_bright" | bc)
+if [ "$progress" -eq 0 ]; then
+   swayosd-client --custom-icon=input-keyboard --custom-message='Backlight Off'
+else
+   swayosd-client --custom-icon=input-keyboard --custom-progress=$progress --custom-progress-text=$next_brightness
+fi

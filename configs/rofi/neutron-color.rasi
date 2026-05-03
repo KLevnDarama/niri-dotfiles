@@ -1,0 +1,122 @@
+* {
+   /* Global colors */
+   white: #efefef;
+   outline: #515766;
+
+   bg0: #25252f;
+   bg1: #2f2f3b;
+   bg2: #3d3d4d;
+   fg0: @white;
+   fg1: @bg0;
+
+   red: #ff25a5;
+   orange: #ffaa00;
+   yellow: #efef00;
+   green: #00ff7b;
+   blue: #71acfc;
+
+   /* Root stylesheet */
+   accent: @blue;
+   urgent: @orange;
+
+   background-color: transparent;
+   font: "FiraCode Nerd Font 12";
+   color: @fg0;
+}
+
+/* Stylesheet is structured based on the default hierarchy
+See:
+https://davatorium.github.io/rofi/current/rofi-theme.5/#base-widgets
+https://davatorium.github.io/rofi/current/rofi-theme.5/#basic-layout-structure
+*/
+
+window {
+   location: north;
+   y-offset: 65px;
+   width: 450px;
+
+   border: 1px solid;
+   border-color: @outline;
+   border-radius: 13px;
+
+   background-color: @bg0;
+
+}
+
+mainbox {
+   children: [inputbar, mode-switcher, message, listview];
+}
+
+prompt, entry, textbox, element-text, element-icon {
+   vertical-align: 0.5;
+}
+
+/* textbox */
+// this is a workaround from `message`
+// for some reason `message` just has this odd text overflowing issue
+textbox {
+   padding: 0.45em 0.85em;
+}
+
+/* inputbar */
+inputbar {
+   padding: 0.75em 0.85em;
+   spacing: 0.85em;
+
+   background-color: @bg1;
+}
+prompt {
+   color: @accent;
+}
+
+/* listview */
+listview {
+   lines: 11;
+   dynamic: true;
+   fixed-height: false;
+   padding: 0 0 0.5em 0;
+   spacing: 0.2em;
+   scrollbar: false; // optional scrollbar
+}
+scrollbar {
+   handle-color: @bg2;
+   handle-rounded-corners: true;
+}
+element {
+   padding: 0.35em 0.85em;
+   spacing: 0.85em;
+}
+element selected.normal, element selected.active {
+   background-color: @accent;
+   color: @fg1;
+}
+element selected.urgent {
+   background-color: @urgent;
+   color: @fg1;
+}
+element-text {
+   text-color: inherit;
+}
+element-icon {
+   size: 1.25em;
+}
+
+/* mode-switcher */
+mode-switcher {
+   spacing: 0;
+}
+
+button {
+   background-color: @bg1;
+   padding: 0.45em 0;
+}
+button selected.normal, button selected.active {
+   background-color: @green;
+   color: @fg1;
+}
+
+/* error-message */
+error-message {
+   background-color: @bg1;
+   padding: 0.3em 0em;
+}

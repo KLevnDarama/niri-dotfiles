@@ -1,0 +1,15 @@
+#!/bin/bash
+
+INPUT_IMG="$1"
+BLURRED_IMG="/tmp/niri_backdrop_blurred.png"
+
+if [ -z "$INPUT_IMG" ]; then
+    echo "Usage: $0 path/to/image.jpg"
+    exit 1
+fi
+
+awww img --transition-type wipe --transition-duration 1 "$INPUT_IMG" &
+
+magick "$INPUT_IMG" -resize 25% -blur 0x10 "$BLURRED_IMG"
+pkill wbg
+wbg -s "$BLURRED_IMG" &>/dev/null 2>$1 &

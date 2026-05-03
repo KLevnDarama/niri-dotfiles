@@ -1,0 +1,39 @@
+configuration {
+   modes: "drun,calc,filebrowser,recursivebrowser";
+   font: "FiraCode Nerd Font Propo 12";
+   show-icons: true;
+   timeout {
+      action: "kb-cancel";
+      delay:  0;
+   }
+
+   drun {
+      display-name: " ";
+   }
+   calc {
+      display-name: "";
+      hint-result: "";
+      calc-error-color: '#fab387';
+      terse: false;
+      no-bold: true;
+      no-persist-history: true;
+      no-show-match: true;
+      no-sort: true;
+      calc-command: "echo -n '{result}' | sed 's/^approx\. //' | wl-copy && notify-send -a 'Rofi Calculator' -i ~/.config/rofi/icons/clipboard.svg 'Calculator copied:' '{expression}\n= <b><u>{result}</u></b>'";
+   }
+   filebrowser {
+      display-name: " ";
+      directories-first: true;
+      sorting-method: "name";
+      show-hidden: false;
+   }
+   recursivebrowser {
+      display-name: " ";
+   }
+   emoji {
+      display-name: "󰞅 ";
+   }
+}
+
+
+@theme "~/.config/rofi/neutron-color.rasi"

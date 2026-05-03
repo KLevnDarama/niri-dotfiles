@@ -1,0 +1,14 @@
+spawn-at-startup "awww-daemon"
+spawn-at-startup "waybar"
+//spawn-sh-at-startup "wbg ~/Pictures/Wallpapers/pushyourselfblurred.jpg"
+spawn-at-startup "rudo"
+spawn-at-startup "swaync"
+spawn-at-startup "hypridle"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "swayosd-server"
+
+layer-rule {
+   match namespace="wallpaper"
+
+   place-within-backdrop true
+}

@@ -1,0 +1,183 @@
+{
+   "name": "topbar",
+   "layer": "top",
+   "reload_style_on_change": true,
+   "modules-left": [
+      "custom/applauncher",
+      "clock",
+      "group/hardware",
+      "niri/window",
+      "privacy"
+   ],
+
+   "modules-center": [
+      "niri/workspaces"
+   ],
+
+   "modules-right": [
+      "tray",
+      "group/software",
+      "battery",
+      "network",
+      "custom/notification"
+   ],
+
+   "custom/applauncher": {
+      "format": "󰣇",
+      "on-click": "pgrep rofi >/dev/null 2>&1 && killall rofi || rofi -show",
+      "tooltip": false
+   },
+   "niri/window": {
+      "format": "{app_id}",
+      "icon": true,
+      "icon-size": 18,
+      "on-click": "niri msg action close-window"
+   },
+   "privacy": {
+      "icon-spacing": 12,
+      "icon-size": 14,
+      "transition-duration": 250,
+      "modules": [
+         {
+            "type": "screenshare",
+            "tooltip": true,
+            "tooltip-icon-size": 18
+         },
+         {
+            "type": "audio-in",
+            "tooltip": true,
+            "tooltip-icon-size": 18
+         }
+      ],
+      "ignore-monitor": true
+   },
+
+   "niri/workspaces": {
+      "all-outputs": true
+   },
+
+   "clock": {
+      "format": " {:%H:%M}",
+      "format-alt": "󰃭 {:%a, %d %b %y (%H:%M)}",
+      "tooltip-format": "󰃰 {:%d-%m-%Y %T}"
+   },
+   "group/hardware": {
+      "orientation": "inherit",
+      "drawer": {
+         "transition-duration": 250,
+         "transition-left-to-right": true,
+      },
+      "modules": [ "cpu","memory","temperature" ],
+   },
+   "cpu": {
+      "interval": 2,     
+      "format": " {usage}%"
+   },
+   "memory": {
+      "interval": 5,
+      "format": " {}%",
+      "tooltip-format": "RAM: {used:0.1f}GiB — {avail:0.1f}GiB\nSwap: {swapUsed:0.1}GiB — {swapAvail:0.1f}GiB"
+   },
+   "temperature": {
+      "format": " {temperatureC}°C"
+   },
+
+   "tray": {
+      "spacing": 12
+   },
+   "group/software": {
+      "orientation": "inherit",
+      "drawer": {
+         "transition-duration": 250,
+         "transition-left-to-right": false,
+      },
+      "modules": [ "pulseaudio", "bluetooth", "backlight" ],
+   },
+   "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "{icon} {volume}%",
+      "format-muted": " Muted",
+      "format-icons": {
+         "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+         "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+         "headphone": "",
+         "hands-free": "",
+         "headset": "",
+         "phone": "",
+         "phone-muted": "",
+         "portable": "",
+         "car": "",
+         "default": ["", ""]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol",
+      "ignored-sinks": ["Easy Effects Sink"]
+   },
+   "backlight": {
+      "device": "intel_backlight",
+      "format": "{icon} {percent}%",
+      "format-icons": ["󰃝", "󰃟", "󰃠"]
+   },
+   "bluetooth": {
+      "format": "󰂯 Enabled",
+      "format-disabled": "󰂲 Off",
+      "format-connected": "󰂱 {device_alias}",
+      "tooltip-format": "{controller_alias}\t{controller_address}",
+      "tooltip-format-disabled": "Bluetooth disabled",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "on-click": "rfkill list bluetooth | grep -q \"Soft blocked: yes\" && rfkill unblock bluetooth || rfkill block bluetooth"
+   },
+
+   "battery": {
+      "interval": 2,
+      "states": {
+         "full": 100,
+         "normal": 95,
+         "warning": 25,
+         "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-charging": "{icon} {capacity}%",
+      "format-icons": {
+         "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+         "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅" ],
+         "plugged": ""
+      },
+      "tooltip-format": " {timeTo}\n󱐋 {power}W\n󰗶 {health}%"
+   },
+   "network": {
+      "format": "󰊗 {ifname}",
+      "format-wifi": " {signalStrength}% {essid}",
+      "format-ethernet": "󰊗 {ipaddr}/{cidr}",
+      "format-disconnected": "󰖪 Disconnected",
+      "format-disabled": "󰖪 Disabled",
+      "tooltip-format": "󰊗 {ifname} via {gwaddr} ",
+      "tooltip-format-wifi": " {signalStrength}% {essid}",
+      "tooltip-format-ethernet": " {ifname}",
+      "tooltip-format-disconnected": "󰖪 Disconnected",
+      "tooltip-format-disabled": "󰖪 Disabled",
+      "max-length": 20,
+      "on-click": "[[ $(nmcli r wifi) == \"enabled\" ]] && nmcli radio wifi off || nmcli radio wifi on",
+   },
+   "custom/notification": {
+      "tooltip": true,
+      "format": "{0} {icon}",
+      "format-icons": {
+         "notification": "󱅫",
+         "none": "󰂜",
+         "dnd-notification": "󰂠",
+         "dnd-none": "󰪓",
+         "inhibited-notification": "󰂛",
+         "inhibited-none": "󰪑",
+         "dnd-inhibited-notification": "󰂛",
+         "dnd-inhibited-none": "󰪑"
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
+   }
+}

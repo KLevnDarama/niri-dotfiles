@@ -1,0 +1,378 @@
+* {
+    all: unset;
+    font-family: "FiraCode Nerd Font Propo", "Noto Sans Mono", monospace;
+    font-size: 14px;
+    transition: 250ms;
+
+    --white: #efefef;
+    --grey: #aaaaaa;
+    --dark0: #25252f;
+    --dark1: #2f2f3b;
+    --dark2: #3d3d4d;
+    --black0: #1d1d24;
+
+    --red: #ff25a5;
+    --orange: #ffaa00;
+    --yellow: #efef00;
+    --green: #00ff7b;
+    --blue: #71acfc;
+
+    --background0: var(--dark0);
+    --background1: var(--dark1);
+    --background2: var(--dark2);
+    --foreground0: var(--white);
+    --foreground1: var(--dark0);
+    --outline: #515766;
+
+    --critical: var(--red);
+    --normal: var(--blue);
+    --low: var(--grey);
+
+    --notification-icon-size: 48px;
+    --notification-app-icon-size: calc(var(--notification-icon-size) * 0.4);
+
+    --border-width: 1px;
+    --border-radius: 12px;
+
+    --noti-bg-hover: transparent;
+    --bg-selected: transparent;
+    --noti-bg-focus: var(--black0);
+    --notification-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
+        0 2px 6px 2px rgba(0, 0, 0, 0.3);
+}
+
+button {
+    background: var(--background2);
+    padding: 0.25rem;
+    margin: 0;
+    border: var(--border-width) solid var(--outline);
+    border-radius: 1.5rem;
+    box-shadow: none;
+}
+button label {
+    margin: 0.25rem 0.5rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+button:hover {
+    background: var(--black0);
+}
+button:disabled {
+    opacity: 0.5;
+}
+
+entry {
+    background: var(--dark0);
+    padding: 0.55rem 1.35rem;
+    border: var(--border-width) solid var(--outline);
+    border-radius: 1.5rem;
+}
+
+trough highlight {
+    background: var(--blue);
+}
+scale {
+    margin: 0 7px;
+}
+scale trough {
+    margin: 0rem 1rem;
+    min-height: 7px;
+    min-width: 70px;
+    border-radius: 1rem;
+    border: var(--border-width) solid var(--outline);
+}
+
+trough slider {
+    margin: -10px;
+    border-radius: 1rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+    transition: all 0.2s ease;
+    background-color: var(--background2);
+}
+trough slider:hover {
+    box-shadow:
+        0 0 2px rgba(0, 0, 0, 0.8),
+        0 0 8px var(--black0);
+}
+trough {
+    background-color: var(--background0);
+}
+
+progress {
+    background: var(--blue);
+    padding-top: 5px;
+    border: none;
+}
+
+.notification-background {
+    margin: 1px; /* this margin fixes border clipping issue */
+}
+.notification-row {
+    margin-bottom: 1rem;
+}
+.notification-group.collapsed .notification-row {
+    margin-bottom: 0;
+}
+.notification-row:focus {
+    background: var(--noti-bg-focus);
+}
+.notification-background,
+.notification-row {
+    border-radius: 0;
+}
+.notification-content .text-box {
+    margin-left: 1.2rem;
+}
+.notification-content .summary {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.notification-content .time {
+    font-size: 0.85rem;
+    font-weight: 400;
+    font-style: italic;
+}
+.notification-content .body {
+    margin-top: 0.5rem;
+}
+.notification-content .image {
+    -gtk-icon-size: var(--notification-icon-size);
+    border-radius: var(--border-radius);
+    margin: 0;
+}
+.notification-content .app-icon {
+    -gtk-icon-filter: none;
+    -gtk-icon-size: var(--notification-app-icon-size);
+    -gtk-icon-shadow: 0 1px 4px black;
+    margin: 0 -6px -6px 0;
+}
+.notification-content progressbar {
+    margin-top: 0.5rem;
+}
+.notification-action {
+    margin: 1px; /* this margin fixes border clipping issue */
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+}
+.notification-action:last-child {
+    margin-right: 1px; /* this margin fixes border clipping issue */
+}
+.notification-action label {
+}
+.notification-content .inline-reply {
+    margin-top: 1.25rem;
+}
+.notification-content .inline-reply-entry {
+    margin-right: 1rem;
+}
+.notification-content .inline-reply-button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.notification-group {
+    padding: 1rem 1.5rem;
+}
+.notification-group:focus {
+    background: var(--noti-bg-focus);
+}
+.notification-background .close-button,
+.notification-group .notification-group-close-button {
+    margin: 1rem 1rem 0 0;
+}
+.notification-group.collapsed.not-expanded {
+    opacity: 0.5;
+}
+.notification-group-headers,
+.notification-group-buttons {
+    padding: 0 0.5rem 1rem;
+}
+.notification-group-buttons button {
+    margin-left: 0.5rem;
+    padding: 0.35rem;
+}
+.notification-group-icon {
+    -gtk-icon-size: 21px;
+}
+.notification-group-header {
+    margin-left: 0.5rem;
+    font-size: 1.05rem;
+}
+.floating-notifications {
+    margin: 12px 12px 0 0;
+}
+.floating-notifications .notification-row {
+    margin-bottom: 1rem;
+}
+.floating-notifications .notification {
+    padding: 1.5rem 1.25rem;
+}
+
+.notification {
+    background: var(--background1);
+    border-radius: var(--border-radius) 3px 3px var(--border-radius);
+    border: var(--border-width) solid var(--outline);
+    border-right-width: 5px;
+    padding: 1.5rem 1.25rem;
+}
+
+.notification progress,
+.notification trough,
+.notification progressbar {
+    border-radius: 1rem;
+    padding: 3px 0;
+}
+.notification.critical {
+    border-right-color: var(--critical);
+}
+.notification.critical progress {
+    background: var(--critical);
+}
+.notification.normal {
+    border-right-color: var(--normal);
+}
+.notification.low {
+    border-right-color: var(--low);
+}
+.notification.low progress {
+    background: var(--low);
+}
+
+.control-center {
+    background: var(--background0);
+    border: var(--border-width) solid var(--outline);
+    border-width: var(--border-width) 0 var(--border-width) var(--border-width);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+.control-center .control-center-list .notification {
+    box-shadow: var(--notification-shadow);
+}
+.control-center .control-center-list-placeholder {
+    opacity: 0.5;
+}
+.control-center .control-center-list-placeholder label {
+    font-size: 1.1rem;
+}
+
+.widget {
+    margin: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.widget-title {
+    background: var(--background1);
+    padding: 1.5rem 1rem 1.1rem;
+    border-bottom: 2px solid var(--black0);
+}
+.widget-title > label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 0.75rem;
+    margin-top: 5px;
+}
+.widget-title > button label {
+    font-weight: 500;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.widget-dnd {
+    background: var(--background1);
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--black0);
+}
+.widget-dnd label {
+    margin-left: 0.75rem;
+    margin-top: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.5;
+}
+.widget-dnd > switch {
+    font-size: initial;
+    margin-right: 0.3rem;
+    border-radius: 1.5rem;
+    border: var(--border-width) solid var(--outline);
+    background: var(--background0);
+    box-shadow: none;
+    min-width: 3.5rem;
+    min-height: 1.75rem;
+}
+.widget-dnd > switch:checked {
+    background: var(--blue);
+}
+.widget-dnd > switch slider {
+    background: var(--background2);
+    border-radius: 1.5rem;
+}
+
+* {
+    --mpris-album-art-overlay: alpha(var(--background1), 0.75);
+    --mpris-album-art-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+}
+.widget-mpris-player {
+    margin: 1.25rem;
+    border: 2px solid var(--outline);
+    border-radius: var(--border-radius);
+    box-shadow: var(--notification-shadow);
+}
+.mpris-background {
+    filter: blur(5px);
+}
+.mpris-overlay {
+    padding: 1rem;
+    background-color: var(--mpris-album-art-overlay);
+}
+.mpris-overlay > box > button {
+    margin-left: 0.5rem;
+    -gtk-icon-size: 26px;
+}
+.widget-mpris-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+.widget-mpris-subtitle {
+    font-size: 0.95rem;
+}
+
+.widget-volume {
+    background: var(--background1);
+    padding: 1.5rem 2rem;
+    border-top: 2px solid var(--black0);
+}
+.widget-volume slider {
+    background: var(--blue);
+}
+.per-app-volume {
+    padding-bottom: 0.75rem;
+}
+.per-app-volume row {
+    margin-top: 2rem;
+}
+
+.widget-buttons-grid {
+    background: var(--background1);
+    border-top: 2px solid var(--black0);
+    padding: 0;
+}
+.widget-buttons-grid flowbox {
+    padding: 0.75rem 0.75rem 1rem;
+}
+.widget-buttons-grid flowboxchild {
+    padding: 0;
+    margin: 0.5rem;
+}
+.widget-buttons-grid flowboxchild button {
+    padding: 0.75rem 0;
+    transition: var(--hover-transition);
+    border-radius: var(--border-radius);
+}
+.widget-buttons-grid flowboxchild button.toggle:checked {
+    background: var(--blue);
+    color: var(--foreground1);
+}
+.widget-buttons-grid flowboxchild label {
+    font-size: 1rem;
+}

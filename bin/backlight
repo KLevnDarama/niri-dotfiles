@@ -1,0 +1,24 @@
+#!/bin/bash
+
+MULT=2
+
+brightness=$(brightnessctl get)
+max_bright=$(brightnessctl max)
+min_bright=$(echo "$max_bright/100" | bc)
+set_bright=0
+
+action="$1"
+
+if [ "$action" = "increase" ]; then
+   num=$(echo "$brightness*$MULT" | bc)
+   set_bright=$(( num < min_bright ? min_bright : (num > max_bright ? max_bright : num) ))
+elif [ "$action" = "decrease" ]; then
+   num=$(echo "$brightness/$MULT" | bc)
+   set_bright=$(( num < min_bright ? min_bright : (num > max_bright ? max_bright : num) ))
+else
+   echo "Usage: $0 [increase|decrease]"
+   exit 1
+fi
+
+percent=$(echo "$set_bright*100/$max_bright" | bc)
+swayosd-client --brightness=$percent

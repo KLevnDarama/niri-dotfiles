@@ -1,0 +1,31 @@
+[general]
+framerate = 60
+
+autosens = 1
+overshoot = 0
+lower_cutoff_freq = 20
+higher_cutoff_freq = 20000
+
+bar_spacing = 0
+
+[output]
+channels = mono
+mono_option = average
+
+[color]
+blend_direction = 'up'
+
+gradient = 1
+gradient_color_1 = '#efefff'
+gradient_color_2 = '#efefff'
+
+horizontal_gradient = 1
+horizontal_gradient_color_1 = '#ff25a5'
+horizontal_gradient_color_2 = '#ffaa00'
+horizontal_gradient_color_3 = '#efef00'
+horizontal_gradient_color_4 = '#00ff7b'
+horizontal_gradient_color_5 = '#71acfc'
+
+[smoothing]
+noise_reduction = 25
+

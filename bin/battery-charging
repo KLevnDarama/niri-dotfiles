@@ -1,0 +1,47 @@
+#!/bin/bash
+
+BAT=$(echo /sys/class/power_supply/BAT*)
+
+energy=$(cat $BAT/energy_now)
+energy_full=$(cat $BAT/energy_full)
+power=$(cat $BAT/power_now)
+status=$1
+level=$(cat $BAT/capacity)
+
+ASSETDIR="$HOME/.local/bin/share/"
+ICOCHARG="$ASSETDIR/charging.svg"
+ICOBAT="$ASSETDIR/battery.svg"
+
+APPNAME="Battery notify"
+
+AC=/tmp/batteryac
+
+hours_empty=$(echo "scale=4; ($energy / $power)" | bc)
+h_empty=$(echo "($hours_empty) / 1" | bc)
+m_empty=$(echo "($hours_empty - $h_empty) * 60 / 1" | bc)
+est="$h_empty h $m_empty min"
+
+hours_full=$(echo "scale=4; ($energy_full - $energy) / $power" | bc)
+h_full=$(echo "($hours_full) / 1" | bc)
+m_full=$(echo "($hours_full - $h_full) * 60 / 1" | bc)
+eta="$h_full h $m_full min"
+
+case "$status" in
+   "0") ICON=$ICOBAT ; SUMMARY="Battery Unplugged" ; BODY="Est. $est left" ;;
+   "1") ICON=$ICOCHARG ; SUMMARY="Battery Plugged In" ; BODY="ETA in $eta" ;;
+   *) echo "Usage: $0 [0|1]" ; exit 0 ;;
+esac
+
+if [ ! -f "$AC" ] && [ "$status" -eq 1 ]; then
+   touch "$AC"
+elif [ -f "$AC" ] && [ "$status" -eq 0 ]; then
+   rm "$AC"
+else
+   exit 0
+fi
+
+if [ "$power" -eq 0 ]; then
+   BODY="Current capacity: $level%"
+fi
+
+/usr/bin/notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICON" "$SUMMARY" "$BODY"

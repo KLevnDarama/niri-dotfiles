@@ -1,0 +1,60 @@
+input {
+   //warp-mouse-to-focus
+
+   touchpad {
+      tap
+
+      accel-speed 0.1
+      accel-profile "adaptive"
+   }
+   mouse {
+      accel-profile "flat"
+   }
+}
+
+layout {
+   center-focused-column "never"
+   always-center-single-column
+
+   default-column-width { }
+
+   preset-column-widths {
+      proportion 0.35
+      proportion 0.5
+      proportion 0.75
+   }
+
+   preset-window-heights {
+      proportion 0.35
+      proportion 0.5
+      proportion 0.75
+   }
+}
+
+recent-windows {
+   // off
+   debounce-ms 750
+
+   open-delay-ms 0
+
+   highlight {
+      active-color "#999999ff"
+      urgent-color "#ff9999ff"
+      padding 21
+      corner-radius 11
+   }
+
+   previews {
+      max-height 320
+      max-scale 0.5
+   }
+
+   binds {
+      Alt+Tab         { next-window; }
+      Alt+Shift+Tab   { previous-window; }
+
+      Mod+Tab         { next-window; }
+      Mod+Shift+Tab   { previous-window; }
+   }
+}
+

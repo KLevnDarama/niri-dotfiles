@@ -1,0 +1,79 @@
+/* colors */
+@define-color white #efefef;
+@define-color blue #71acfc;
+
+@define-color background0 #25252f;
+@define-color background1 #2f2f3b;
+@define-color background2 #3d3d4d;
+
+@define-color outline0 #515766;
+
+* {
+   font: 16px "FiraCode Nerd Font Propo", monospace;
+   font-weight: 600;
+}
+
+window#osd {
+   background: @background0;
+   border: 1px solid @outline0;
+   border-radius: 11px 11px 5px 5px;
+   border-bottom: 5px solid @blue;
+}
+
+window#osd #container {
+   padding: 0 0.5rem;
+}
+
+window#osd image {
+   -gtk-icon-transform: scale(0.85);
+}
+
+window#osd label {
+   margin-left: 0.35rem;
+}
+
+window#osd image,
+window#osd label {
+   color: @white;
+}
+
+window#osd progressbar,
+window#osd image {
+   color: @blue;
+}
+
+window#osd progressbar:disabled,
+window#osd image:disabled {
+   color: @white;
+   opacity: 0.5;
+}
+
+window#osd progressbar,
+window#osd segmentedprogress {
+   min-height: 6px;
+   border-radius: 999px;
+   background: transparent;
+   border: none;
+}
+
+window#osd segment,
+window#osd trough {
+   min-height: inherit;
+   border-radius: inherit;
+   border: none;
+   background: @background0;
+}
+window#osd progress,
+window#osd segment.active {
+   min-height: inherit;
+   border-radius: inherit;
+   border: none;
+   background: @blue;
+}
+
+window#osd segment {
+   margin-left: 8px;
+   &:first-child {
+      margin-left: 0;
+   }
+}

@@ -1,0 +1,12 @@
+[Unit]
+Description=Battery Alert Timer
+
+[Timer]
+OnActiveSec=5
+OnUnitActiveSec=5
+AccuracySec=1
+Unit=battery-alert.service
+
+[Install]
+WantedBy=timers.target
+

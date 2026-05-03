@@ -1,0 +1,96 @@
+@define-color fg #efefef;
+@define-color bg #2f2f3b;
+@define-color ol #515766;
+
+@define-color red #ff25a5;
+@define-color orange #ffaa00;
+@define-color blue #71acfc;
+
+* {
+   background-image: none;
+   box-shadow: none;
+   font: 1.15rem "FiraCode Nerd Font";
+   font-weight: 700;
+}
+
+window {
+   background-color: rgba(0, 0, 0, 0.65);
+}
+
+button {
+   margin: 5rem 0;
+   padding: 4rem;
+
+   border-width: 2px 0 2px 0;
+   border-style: solid;
+   border-color: @ol;
+   border-radius: 0;
+   color: @fg;
+   background: @bg;
+
+   background-repeat: no-repeat;
+   background-position: calc(50%) calc(50% - 15px);
+   background-size: 80px;
+}
+
+#shutdown:focus, #shutdown:active, #shutdown:hover,
+#logout:focus, #logout:active, #logout:hover,
+button:focus, button:active, button:hover {
+   margin: 3rem 0;
+   border-radius: 2rem;
+
+   background-color: @blue;
+   background-size: 100px;
+   outline-style: none;
+   color: @bg;
+}
+
+#shutdown {
+   border-radius: 2rem 0 0 2rem;
+   border-left-width: 2px;
+
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/shutdown.png"));
+}
+#shutdown:focus, #shutdown:active, #shutdown:hover {
+   background-color: @red;
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/shutdown-hover.png"));
+}
+
+#reboot {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/reboot.png"));
+}
+#reboot:focus, #reboot:active, #reboot:hover {
+   background-color: @orange;
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/reboot-hover.png"));
+}
+
+#suspend {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/suspend.png"));
+}
+#suspend:focus, #suspend:active, #suspend:hover {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/suspend-hover.png"));
+}
+
+#lock {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/lock.png"));
+}
+#lock:focus, #lock:active, #lock:hover {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/lock-hover.png"));
+}
+
+#hibernate {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/hibernate.png"));
+}
+#hibernate:focus, #hibernate:active, #hibernate:hover {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/hibernate-hover.png"));
+}
+
+#logout {
+   border-radius: 0 2rem 2rem 0;
+   border-right-width: 2px;
+
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/logout.png"));
+}
+#logout:focus, #logout:active, #logout:hover {
+   background-image: image(url("/home/apajadah/.config/wlogout/icons/logout-hover.png"));
+}

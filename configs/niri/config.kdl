@@ -1,0 +1,23 @@
+include "startup.kdl"
+include "style.kdl"
+include "workflow.kdl"
+include "window.kdl"
+include "bind.kdl"
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+output "eDP-1" {
+   //mode custom=true "1280x720@60"
+   //scale 1
+   mode "1920x1080@60"
+   scale 1.175
+   transform "normal"
+}
+
+environment {
+   ELECTRON_OZONE_PLATFORM_HINT "auto"
+   SAL_USE_VCLPLUGIN "gtk3"
+}
+
+hotkey-overlay { skip-at-startup; }
+

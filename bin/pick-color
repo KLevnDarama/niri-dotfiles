@@ -1,0 +1,23 @@
+#!/bin/bash
+
+APPNAME="Color picker"
+ICON="$HOME/.local/bin/share/eye_dropper.svg"
+
+NID=$(notify-send -p -a "$APPNAME" -i $ICON "Color picker" "Pick a color on your screen...")
+output=$(niri msg pick-color)
+
+if echo "$output" | grep -q "No color was picked."; then
+   notify-send -r $NID -a "$APPNAME" -i $ICON -u low "Color picker" "Didn't picked any color"
+   exit 1
+fi
+
+hex=$(echo "$output" | sed -n 's/.*Hex: #\(.*\)/\1/p')
+echo -n "$hex" | wl-copy
+
+TEMPLATE="$HOME/.local/bin/share/color-picked.svg"
+TMP_IMG="/tmp/color-picked.svg"
+sed "s/000000/$hex/" $TEMPLATE > $TMP_IMG
+
+notify-send -r $NID -a "$APPNAME" -i $TMP_IMG "Picked a color" "Picked color: #$hex"
+
+rm $TMP_IMG

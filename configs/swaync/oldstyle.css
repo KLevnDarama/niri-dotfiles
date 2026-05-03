@@ -1,0 +1,246 @@
+* {
+   --white: #efefef;
+   --grey: #aaaaaa;
+   --dark0: #25252f;
+   --dark1: #2f2f3b;
+   --dark2: #3d3d4d;
+   --black0: #202028;
+
+   --red: #ff25a5;
+   --orange: #ffaa00;
+   --yellow: #efef00;
+   --green: #00ff7b;
+   --blue: #71acfc;
+   
+   --background0: var(--dark0);
+   --background1: var(--dark1);
+   --background2: var(--dark2);
+   --foreground0: var(--white);
+   --foreground1: var(--dark0);
+   --outline: #515766;
+
+   --critical: var(--red);
+   --normal: var(--blue);
+   --low: var(--grey);
+
+   --icon-size: 40px;
+   
+   --border-width: 1px;
+   --border-radius: 12px;
+
+   font-family: "FiraCode Nerd Font Propo", monospace;
+   --font-size-body: 14px;
+   --font-size-summary: 15px;
+   --text-color: var(--white);
+   --text-color-disabled: var(--grey);
+
+   --noti-bg-hover: transparent;
+   --bg-selected: transparent;
+   --noti-bg-focus: var(--black0);
+
+}
+
+button {
+   background: var(--background2);
+   padding: 0.1rem;
+   margin: 0;
+   border: var(--border-width) solid var(--outline);
+   border-radius: var(--border-radius);
+   box-shadow: none;
+}
+button label {
+   margin: 0 1rem;
+}
+button:hover {
+   background: var(--background1);
+}
+
+progress {
+   background: var(--blue);
+   padding-top: 2px;
+   border: none;
+}
+highlight {
+   background: var(--blue);
+   padding-top: 2px;
+   border: none;
+}
+slider {
+   background: var(--background2);
+   border-color: var(--outline);
+}
+scale {
+   margin: 0 0.5rem;
+}
+
+.close-button {
+   margin: 1rem 1rem 0 0;
+}
+.notification-group-close-button {
+   margin: 1rem 1rem 0 0;
+}
+
+.floating-notifications {
+   margin-top: 11px;
+}
+.floating-notifications .notification {
+   background: var(--background0);
+}
+
+.notification {
+   background: var(--background1);
+   border-radius: var(--border-radius) 6px 6px var(--border-radius);
+   border: var(--border-width) solid var(--outline);
+   border-right-width: 5px;
+   padding: 1rem 0.85rem;
+}
+.notification-background {
+   border-radius: 0;
+}
+.notification-group-headers {
+   padding: 0.5rem 0;
+}
+.notification-group-headers label {
+   font-size: 1rem;
+}
+.notification-group {
+   padding: 1rem 0.5rem;
+   border-radius: var(--border-radius);
+   transition: padding 200ms ease-in-out;
+}
+.notification-group.collapsed {
+   padding: 0.5rem 0.25rem;
+   transition: opacity 200ms ease-in-out;
+}
+.notification-group.collapsed.not-expanded {
+   opacity: 0.75;
+}
+
+.time {
+   margin-right: 5px;
+   font-weight: lighter;
+   font-style: italic;
+}
+
+.notification.critical {
+   border-right-color: var(--critical);
+}
+.notification.critical progress {
+   background: var(--red);
+}
+.notification.normal {
+   border-right-color: var(--normal);
+}
+.notification.low {
+   border-right-color: var(--low);
+}
+
+.image {
+   -gtk-icon-size: var(--icon-size);
+}
+.text-box {
+   margin-left: 1em;
+}
+
+.control-center {
+   background: var(--background0);
+   border: var(--border-width) solid var(--outline);
+   border-width: var(--border-width) 0 var(--border-width) var(--border-width);
+   border-radius: var(--border-radius) 0 0 var(--border-radius);
+   padding: 1.55rem;
+}
+
+.widget {
+   margin: 0 2px 1rem 5px;
+   padding: 0;
+}
+.widget:first-child {
+   margin-top: 0;
+}
+.widget:last-child {
+   margin-bottom: 0;
+}
+
+.widget-title button {
+   padding: 0.5rem 0;
+}
+.widgets > .widget {
+   border-radius: var(--border-radius);
+}
+
+.widget-buttons-grid {
+   border-radius: var(--border-radius);
+   background: var(--background1);
+   border: var(--border-width) solid var(--outline);
+   padding: 0;
+}
+.widget-buttons-grid flowbox {
+   padding: 0.5rem;
+}
+.widget-buttons-grid flowboxchild {
+   padding: 0;
+   margin: 0.5rem;
+}
+.widget-buttons-grid flowboxchild button {
+   padding: 0.5rem 0;
+   transition: var(--hover-transition);
+}
+.widget-buttons-grid flowboxchild button.toggle:checked {
+   background: var(--blue);
+   color: var(--foreground1);
+}
+.widget-buttons-grid flowboxchild label {
+   font-size: 1.3rem;
+}
+
+.widget-dnd {
+   background: var(--background1);
+   border: var(--border-width) solid var(--outline);
+   border-radius: var(--border-radius);
+   padding: 0.5rem 1.35rem;
+}
+.widget-dnd label {
+   font-size: 1rem;
+}
+.widget-dnd switch {
+   border: var(--border-width) solid var(--outline);
+   border-radius: 2rem;
+   margin: 0;
+}
+.widget-dnd switch:checked {
+  background: var(--blue);
+}
+.widget-dnd switch slider {
+   border-radius: 2rem;
+}
+
+.widget-volume {
+   background: var(--background1);
+   border: var(--border-width) solid var(--outline);
+   border-radius: var(--border-radius);
+   padding: 0.5rem 1.35rem;
+}
+.widget-volume button {
+   padding: 0 0.25rem;
+   margin-right: 0;
+}
+
+.widget-slider {
+   background: var(--blue);
+}
+
+* {
+   --mpris-album-art-shadow: none;
+   --mpris-album-art-overlay: alpha(var(--background1), 0.75);
+}
+.widget-mpris-player {
+   margin: 0;
+   border: var(--border-width) solid var(--outline);
+   border-radius: var(--border-radius);
+}
+.widget-mpris-title {
+   font-size: 1.1rem;
+}
+.widget-mpris-subtitle {
+   font-size: 1rem;
+}

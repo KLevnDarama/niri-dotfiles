@@ -1,0 +1,226 @@
+/* colors */
+@define-color white #efefef;
+@define-color red #ff25a5;
+@define-color orange #ffaa00;
+@define-color yellow #efef00;
+@define-color green #00ff7b;
+@define-color blue #71acfc;
+
+@define-color background0 #25252f;
+@define-color background1 #2f2f3b;
+@define-color background2 #3d3d4d;
+
+@define-color outline0 #515766;
+
+@define-color foreground0 @white;
+@define-color foreground1 @background0;
+@define-color selected @blue;
+
+* {
+   font: bold 13px "FiraCode Nerd Font Propo", monospace;
+   color: @foreground0;
+   min-height: 0;
+   min-width: 0;
+   animation: none;
+}
+
+/** modules **/
+.modules-left,
+.modules-center,
+.modules-right {
+   min-height: 2.5rem;
+   background: transparent;
+   border: none;
+}
+
+window#waybar {
+   background: transparent;
+}
+window#waybar.empty #window {
+   padding: 0;
+   margin: 0;
+   background: transparent;
+   border: 0 none transparent;
+}
+
+/** left module **/
+#custom-applauncher {
+   background: @background1;
+   padding: 0 1rem;
+   border-bottom: 1px solid @outline0;
+   color: @blue;
+   font-size: 1.5rem;
+}
+
+#clock {
+   background: @background0;
+   padding: 0 1.65rem 0 1rem;
+   margin: 0 0.5rem 0 0;
+   border: 1px solid @outline0;
+   border-width: 0 1px 1px 0;
+   border-radius: 0 0.25rem 2.25rem 0;
+}
+
+#hardware, #window, #privacy {
+   background: @background0;
+   padding: 0 1.35rem;
+   margin: 0.35rem 0.5rem 0 0;
+   border: 1px solid @outline0;
+   border-radius: 1.4rem 0.7rem;
+}
+#hardware label, #window label, #privacy label {
+   font-size: 0.8rem;
+}
+#memory, #temperature {
+   margin-left: 1rem;
+}
+
+#window label {
+   color: #fff;
+}
+
+/** center module **/
+/* niri/workspaces */
+#workspaces {
+   background: @background0;
+   border: 1px solid @outline0;
+   border-width: 0 1px 1px 1px;
+   border-radius: 0 0 2.25rem 2.25rem;
+   padding: 0 1.25rem;
+}
+
+#workspaces button {
+   background: @background2;
+   margin: 0.3rem 0.5rem 0.3rem 0;
+   padding: 0 0.9rem;
+   border-radius: 1.5rem;
+   min-width: 0;
+}
+#workspaces button label {
+   font-size: 0;
+}
+#workspaces button:last-child {
+   margin: 0.3rem 0;
+}
+#workspaces button.active {
+   background: @selected;
+   padding: 0 1.75rem;
+}
+#workspaces button.active label {
+   font-size: inherit;
+}
+#workspaces button.focused label {
+   color: @foreground1;
+}
+
+/** right module **/
+#tray, #software {
+   background: @background0;
+   padding: 0 1.35rem;
+   margin: 0.35rem 0 0 0.5rem;
+   border: 1px solid @outline0;
+   border-radius: 0.7rem 1.4rem;
+}
+#software label, #tray label {
+   font-size: 0.8rem;
+}
+#backlight, #bluetooth {
+   margin-right: 1rem;
+}
+
+/* network */
+#network {
+   padding: 0 1rem;
+   background: @background0;
+   border-bottom: 1px solid @outline0;
+}
+#network.linked,
+#network.ethernet,
+#network.wifi {
+   color: @white;
+}
+
+@keyframes blink {
+to {
+   color: @orange;
+}
+}
+#network.disabled,
+#network.disconnected {
+   color: @red;
+   animation: blink;
+   animation-duration: 3s;
+   animation-timing-function: steps(15);
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
+/* battery */
+#battery {
+   background: @background0;
+   padding-left: 2rem;
+   margin-left: 0.5rem;
+   border: 1px solid @outline0;
+   border-width: 0 0 1px 1px;
+   border-radius: 0.25rem 0 0 2.25rem;
+}
+
+#battery.full {
+   color: @green;
+}
+#battery.normal {
+   color: @white;
+}
+#battery.warning {
+   color: @orange;
+}
+#battery.critical {
+   color: @red;
+   animation: blink;
+   animation-duration: 3s;
+   animation-timing-function: steps(15);
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
+@keyframes charging {
+to {
+   color: @green;
+}
+}
+#battery.charging.normal,
+#battery.charging.warning {
+   animation: charging;
+   animation-duration: 3s;
+   animation-timing-function: steps(15);
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
+@keyframes crit-charge {
+   50.0%  { color: @orange; }
+   100.0% { color: @green; }
+}
+#battery.charging.critical {
+   animation: crit-charge;
+   animation-duration: 3s;
+   animation-timing-function: steps(15);
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
+/* menu */
+#custom-notification {
+   background: @background1;
+   border-bottom: 1px solid @outline0;
+   padding: 0 1rem;
+}
+
+/** tooltip **/
+tooltip {
+   background: @background0;
+   padding: 0.25rem;
+}
+tooltip label {
+   font-weight: 600;
+}

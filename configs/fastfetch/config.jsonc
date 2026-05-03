@@ -1,0 +1,102 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+	"logo": {
+		"source": "~/.config/fastfetch/logo.txt",
+		"padding": {
+			"top": 1,
+			"left": 2,
+			"right": 2
+		}
+	},
+	"display": {
+		"separator": " "
+	},
+  "modules": [
+		{
+			"type": "title",
+			"format": "{#1}╭────── {user-name-colored}"
+		},
+		{
+			"type": "os",
+			"key": "{#}│ {#green} OS "
+		},
+		{
+			"type": "kernel",
+			"key": "{#}│ {#green}│ ├ "
+		},
+		{
+			"type": "packages",
+			"key": "{#}│ {#green}│ ├󰏖 "
+		},
+		{
+			"type": "lm",
+			"key": "{#}│ {#green}│ ├ "
+		},
+		{
+			"type": "wm",
+			"key": "{#}│ {#green}│ ├ "
+		},
+		{
+			"type": "shell",
+			"key": "{#}│ {#green}└ └ "
+		},
+		{
+			"type": "custom",
+			"key": "{#}│"
+		},
+		{
+			"type": "host",
+			"key": "{#}│ {#blue} PC "
+		},
+		{
+			"type": "cpu",
+			"key": "{#}│ {#blue}│ ├ "
+		},
+		{
+			"type": "gpu",
+			"key": "{#}│ {#blue}│ ├ "
+		},
+		{
+			"type": "memory",
+			"key": "{#}│ {#blue}│ ├ "
+		},
+		{
+			"type": "swap",
+			"key": "{#}│ {#blue}│ ├󰯍 "
+		},
+		{
+			"type": "disk",
+			"key": "{#}│ {#blue}│ ├ "
+		},
+		{
+			"type": "tpm",
+			"key": "{#}│ {#blue}└ └󰨣 "
+		},
+		{
+			"type": "custom",
+			"key": "{#}│"
+		},
+		{
+			"type": "command",
+			"key": "{#}│ {#magenta}󱦟 Age",
+			"text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+		},
+		{
+			"type": "uptime",
+			"key": "{#}│ {#magenta}│ ├󱫣 "
+		},
+		{
+			"type": "datetime",
+			"key": "{#}│ {#magenta}└ └󱑎 "
+		},
+		{
+			"type": "colors",
+			"key": "{#}│",
+			"symbol": "diamond"
+		},
+		{
+			"type": "custom",
+			"key": "{#}╰──────────────────────────────────────╯"
+		}
+	]
+}

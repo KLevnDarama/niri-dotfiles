@@ -1,0 +1,103 @@
+{
+   "layer": "overlay",
+   "layer-shell-cover-screen": false,
+   "ignore-gtk-theme": true,
+
+   "control-center-layer": "overlay",
+   "control-center-width": 470,
+   "control-center-height": 600,
+   "control-center-margin-top": 11,
+   "control-center-margin-bottom": 11,
+   "control-center-margin-right": 0,
+   "control-center-margin-left": 0,
+   "control-center-animation-duration": 0,
+   
+   "notification-window-width": 470,
+   "notification-body-image-height": 150,
+   "notification-body-image-width": 450,
+   "notification-2fa-action": true,
+   "notification-inline-replies": true,
+   
+   "timeout": 5,
+   "timeout-low": 5,
+   "timeout-critical": 0,
+   
+   "text-empty": "Looking for something? O.o?",
+   
+   "scripts": {
+      "play-sound": {
+         "exec": "paplay ~/.config/swaync/notification.mp3",
+         "app-name": ".*",
+         "run-on": "receive"
+      }
+   },
+   
+   "widgets": [
+      "title",
+      "dnd",
+      "notifications",
+      "mpris",
+      "volume",
+      "buttons-grid"
+   ],
+   
+   "widget-config": {
+      "notifications": {
+         "vexpand": true
+      },
+      "title": {
+         "text": "Notifications",
+         "button-text": "Clear"
+      },
+      "dnd": {
+         "text": "Do Not Disturb"
+      },
+      "mpris": {
+         "image-size": 60,
+         "image-radius": 10
+      },
+      "volume": {
+         "label": "",
+         "show-per-app-icon": true,
+         "show-per-app": true
+      },
+      "buttons-grid": {
+         "buttons-per-row": 6,
+         "actions": [
+            {
+               "label": "󰈊",
+               "command": "swaync-client -cp -sw && ~/.local/bin/pick-color"
+            },
+            {
+               "label": "󰂯",
+               "type": "toggle",
+               "active": true,
+               "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && rfkill unblock bluetooth || rfkill block bluetooth'",
+               "update-command": "sh -c \"rfkill list bluetooth | grep -q \"Soft blocked: yes\" && echo true || echo false\""
+            },
+            {
+               "label": "",
+               "type": "toggle",
+               "active": true,
+               "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+               "update-command": "sh -c '[[ $(nmcli r wifi) == \"enabled\" ]] && echo true || echo false'"
+            },
+            {
+               "label": "",
+               "type": "toggle",
+               "active": false,
+               "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && pactl set-source-mute @DEFAULT_SOURCE@ 1 || pactl set-source-mute @DEFAULT_SOURCE@ 0'",
+               "update-command": "sh -c '[[ $(pactl get-source-mute @DEFAULT_SOURCE@) == *yes* ]] && echo true || echo false'"
+            },
+            {
+               "label": "󰍃",
+               "command": "niri msg action quit"
+            },
+            {
+               "label": "󰐥",
+               "command": "sh -c 'swaync-client -cp && wlogout -b 6'"
+            }
+         ]
+      }
+   }
+}

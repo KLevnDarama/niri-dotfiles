@@ -1,0 +1,61 @@
+prefer-no-csd
+
+layout {
+   gaps 11
+   background-color "#25252f"
+
+   shadow {
+      on
+      draw-behind-window false
+      softness 50
+      spread 3
+      color "#0008"
+   }
+
+   focus-ring {
+      width 1
+      active-gradient from="#71acfc" to="#ff25a5" angle=45 in="oklab" relative-to="workspace-view"
+   }
+
+   border {
+      on
+      width 1
+      active-color "#505564"
+   }
+
+   tab-indicator {
+      active-color "#71acfc"
+      inactive-color "#8888"
+      urgent-color "#ffaa00"
+   }
+}
+
+window-rule {
+   geometry-corner-radius 13
+   clip-to-geometry true
+}
+
+overview {
+   zoom 0.6
+   backdrop-color "#1d1d24"
+}
+
+animations {
+   screenshot-ui-open {
+      duration-ms 250
+   }
+}
+
+layer-rule {
+   match namespace="rofi"
+   match namespace="swayosd"
+   match namespace="swaync-control-center"
+
+   shadow {
+      on
+      draw-behind-window true
+      softness 15
+      spread 1
+      color "#0004"
+   }
+}
