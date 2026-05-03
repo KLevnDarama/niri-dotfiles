@@ -26,7 +26,7 @@ Inspired by [Catppuccin](https://catppuccin.com/)'s color palette, just tad bit 
 
 ## Installation
 > [!NOTE]
-> Since this is only for personal use, i will be only focusing on Arch Linux.
+> Since this is only for personal use, i will only focus on Arch Linux.
 > 
 > If you want to use this, adjust accordingly to your distro of choice. Look out for [systemd-timer](configs/systemd/user) if you're using a systemd-less distro, this timer is on the user level.
 
@@ -37,7 +37,7 @@ pacman -S wbg cava fastfetch fish foot neovim # Optional, some needs extra confi
 yay -S wlogout # Or use your favorite AUR helper
 ```
 
-To use this dotfiles, you can clone this repo and move the directory accordingly
+To use this dotfiles, you can clone this repo and move the directory accordingly:
 ```bash
 git clone https://github.com/KLevnDarama/niri-dotfiles/ --depth 1
 cd niri-dotfiles/
