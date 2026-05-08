@@ -32,8 +32,8 @@ Inspired by [Catppuccin](https://catppuccin.com/)'s color palette, just tad bit 
 
 These are the packages for this dotfile:
 ```bash
-pacman -S niri awww rofi rofi-calc rofi-emoji waybar swayosd swaync hyprlock hypridle # Required
-pacman -S wbg cava fastfetch fish foot neovim # Optional, some needs extra configuration
+pacman -S niri awww rofi rofi-calc rofi-emoji waybar swayosd swaync hyprlock hypridle wbg bc # Required
+pacman -S cava fastfetch fish foot neovim # Optional, some needs extra configuration
 yay -S wlogout # Or use your favorite AUR helper
 ```
 
@@ -58,3 +58,9 @@ After that, you can put the fonts in the `/usr/share/fonts/` directory for globa
 
 Run `fc-cache -fr` to refresh the font cache.
 
+If you want to change wallpaper, use [setwall](bin/setwall) as the handler. This will handle the background transition and backdrop blurring instead of doing it manually:
+```bash
+# Assuming you're in the same directory as 'setwall'
+# Usage: ./setwall <image_path>
+./setwall ~/Pictures/Wallpapers/mountains.png
+```
