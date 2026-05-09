@@ -46,8 +46,8 @@ if [ "$level" -le "$LEVEL_CRIT" ] && [ "$status" -eq 1 ] && [ ! -f "$CRIT" ]; th
    notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOCRIT" -u critical "Critical Battery ($level%)" "Immediately plug in your device.\n$FOOTER"
    touch "$CRIT"
 elif [ "$level" -le "$LEVEL_LOW" ] && [ "$status" -eq 1 ] && [ ! -f "$LOW" ] && [ ! -f "$CRIT" ]; then
-   notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOLOW" -u critical "Low Battery ($level%)" "You might want to plug in your device.\nEst. $est left"
-   touch "$FOOTER"
+   notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOLOW" -u critical "Low Battery ($level%)" "You might want to plug in your device.\n$FOOTER"
+   touch "$LOW"
 elif [ "$level" -ge "$LEVEL_FULL" ] && [ "$status" -eq 0 ] && [ ! -f $FULL ]; then
    notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOFULL" "Battery Fully Charged" "You may now unplug your device"
    touch $FULL
