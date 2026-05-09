@@ -7,9 +7,6 @@ energy_full=$(cat $BAT/energy_full)
 power=$(cat $BAT/power_now)
 status=$(cat $BAT/status | grep -c "Discharging")
 level=$(cat $BAT/capacity)
-if [ "$power" -eq 0 ]; then
-   power="0.1"
-fi
 
 ASSETDIR="$HOME/.local/bin/share/"
 ICOFULL="$ASSETDIR/full.svg"
@@ -26,15 +23,18 @@ FULL="/tmp/batteryfull"
 LOW="/tmp/batterylow"
 CRIT="/tmp/batterycritical"
 
-hours_empty=$(echo "scale=4; ($energy / $power)" | bc)
-h_empty=$(echo "($hours_empty) / 1" | bc)
-m_empty=$(echo "($hours_empty - $h_empty) * 60 / 1" | bc)
-est="$h_empty h $m_empty min"
+if [ "$power" -gt 0 ]; then
+   hours_empty=$(echo "scale=4; ($energy / $power)" | bc)
+   h_empty=$(echo "($hours_empty) / 1" | bc)
+   m_empty=$(echo "($hours_empty - $h_empty) * 60 / 1" | bc)
+   est="$h_empty h $m_empty min"
+fi
 
-hours_full=$(echo "scale=4; ($energy_full - $energy) / $power" | bc)
-h_full=$(echo "($hours_full) / 1" | bc)
-m_full=$(echo "($hours_full - $h_full) * 60 / 1" | bc)
-eta="$h_full h $m_full min"
+if [ "$power" -eq 0 ]; then
+   FOOTER=""
+else
+   FOOTER="Est. $est left"
+fi
 
 if [ "$status" -eq 1 ]; then
    rm -f "$FULL"
@@ -43,11 +43,11 @@ elif [ "$status" -eq 0 ]; then
 fi
 
 if [ "$level" -le "$LEVEL_CRIT" ] && [ "$status" -eq 1 ] && [ ! -f "$CRIT" ]; then
-   notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOCRIT" -u critical "Critical Battery ($level%)" "Immediately plug in your device.\nEst. $est left"
+   notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOCRIT" -u critical "Critical Battery ($level%)" "Immediately plug in your device.\n$FOOTER"
    touch "$CRIT"
 elif [ "$level" -le "$LEVEL_LOW" ] && [ "$status" -eq 1 ] && [ ! -f "$LOW" ] && [ ! -f "$CRIT" ]; then
    notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOLOW" -u critical "Low Battery ($level%)" "You might want to plug in your device.\nEst. $est left"
-   touch "$LOW"
+   touch "$FOOTER"
 elif [ "$level" -ge "$LEVEL_FULL" ] && [ "$status" -eq 0 ] && [ ! -f $FULL ]; then
    notify-send -a "$APPNAME" -h int:value:"$level" -e -i "$ICOFULL" "Battery Fully Charged" "You may now unplug your device"
    touch $FULL

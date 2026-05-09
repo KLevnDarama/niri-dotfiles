@@ -16,15 +16,18 @@ APPNAME="Battery notify"
 
 AC=/tmp/batteryac
 
-hours_empty=$(echo "scale=4; ($energy / $power)" | bc)
-h_empty=$(echo "($hours_empty) / 1" | bc)
-m_empty=$(echo "($hours_empty - $h_empty) * 60 / 1" | bc)
-est="$h_empty h $m_empty min"
+# Calculates both ETA and est. in case of missing values
+if [ "$power" -gt 0 ]; then
+   hours_empty=$(echo "scale=4; ($energy / $power)" | bc)
+   h_empty=$(echo "($hours_empty) / 1" | bc)
+   m_empty=$(echo "($hours_empty - $h_empty) * 60 / 1" | bc)
+   est="$h_empty h $m_empty min"
 
-hours_full=$(echo "scale=4; ($energy_full - $energy) / $power" | bc)
-h_full=$(echo "($hours_full) / 1" | bc)
-m_full=$(echo "($hours_full - $h_full) * 60 / 1" | bc)
-eta="$h_full h $m_full min"
+   hours_full=$(echo "scale=4; ($energy_full - $energy) / $power" | bc)
+   h_full=$(echo "($hours_full) / 1" | bc)
+   m_full=$(echo "($hours_full - $h_full) * 60 / 1" | bc)
+   eta="$h_full h $m_full min"
+fi
 
 case "$status" in
    "0") ICON=$ICOBAT ; SUMMARY="Battery Unplugged" ; BODY="Est. $est left" ;;
