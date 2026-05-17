@@ -1,5 +1,5 @@
 configuration {
-   modes: "drun,calc,filebrowser,recursivebrowser";
+   modes: "drun,calc,recursivebrowser,ssh";
    font: "FiraCode Nerd Font Propo 12";
    show-icons: true;
    timeout {
@@ -20,6 +20,9 @@ configuration {
       no-show-match: true;
       no-sort: true;
       calc-command: "echo -n '{result}' | sed 's/^approx\. //' | wl-copy && notify-send -a 'Rofi Calculator' -i ~/.config/rofi/icons/clipboard.svg 'Calculator copied:' '{expression}\n= <b><u>{result}</u></b>'";
+   }
+   ssh {
+      display-name: "󰳍";
    }
    filebrowser {
       display-name: " ";
