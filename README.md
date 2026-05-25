@@ -1,11 +1,13 @@
 # Apajadah's niri-dotfiles
+
 ![Niri](https://img.shields.io/badge/Niri-D55C44?style=for-the-badge&logo=niri&logoColor=white&color=%23D55C44)
 ![Wayland](https://img.shields.io/badge/Wayland-FFBC00?style=for-the-badge&logo=wayland&logoColor=black&color=%23FFBC00)
 ![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=archlinux&logoColor=white&color=%231793D1)
 
 Simple, readable, and productive setup.
 
-Inspired by [Catppuccin](https://catppuccin.com/)'s color palette, just tad bit of personal touches with brighter colors and less jaring background color.
+Inspired by [Catppuccin](https://catppuccin.com/)'s color palette,
+just tad bit of personal touches with brighter colors and less jaring background color.
 
 ## Screenshots
 
@@ -25,19 +27,29 @@ Inspired by [Catppuccin](https://catppuccin.com/)'s color palette, just tad bit 
 </details>
 
 ## Installation
-> [!NOTE]
-> Since this is only for personal use, i will only focus on Arch Linux.
-> 
-> If you want to use this, adjust accordingly to your distro of choice. Look out for [systemd-timer](configs/systemd/user) if you're using a systemd-less distro, this timer is on the user level.
+
+> [!IMPORTANT]
+> This dotfile is made for personal use, i won't be adding instructions for other distributions but the process should be similar.
+> Adjust accordingly to fit your distribution of choice.
+
+### 1. Packages (Arch Linux)
 
 These are the packages for this dotfile:
+
 ```bash
 pacman -S niri awww rofi rofi-calc rofi-emoji waybar swayosd swaync hyprlock hypridle wbg bc # Required
 pacman -S cava fastfetch fish foot neovim # Optional, some needs extra configuration
 yay -S wlogout # Or use your favorite AUR helper
 ```
 
+### 2. Cloning and Moving
+
+> [!CAUTION]
+> Before moving files into the designated directories. Makes sure to backup ALL of your existing data as
+> this is a destructive action with no prior warning.
+
 To use this dotfiles, you can clone this repo and move the directory accordingly:
+
 ```bash
 git clone https://github.com/KLevnDarama/niri-dotfiles/ --depth 1
 cd niri-dotfiles/
@@ -45,22 +57,94 @@ cd niri-dotfiles/
 mkdir ~/.config
 mv configs/ ~/.config
 
-mkdir ~/.local/
-mkdir ~/.local/bin
+mkdir -p ~/.local/bin
 mv bin/ ~/.local/bin
+
+# udev rules requires root privileges
+# More indo in a chapter down below
+sudo cp udev/ /etc/udev/rules.d
 ```
 
-For the fonts, you may install:
+The lock screen will look for `.face` in your `$HOME` directory. Consider cropping a profile picture into a 1:1 ratio and set the name as `.face`
+
+### 3. Fonts
+
+For the fonts, you may need to install the following:
+
 - `ttf-firacode-nerd` package or manually via [the website](https://www.nerdfonts.com/) and look for "FiraCode"
 - "Stray (2022)" font from [this video](https://www.youtube.com/watch?v=Gnx4XUvEd44). 
 
-After that, you can put the fonts in the `/usr/share/fonts/` directory for global installation or `~/.local/share/fonts` for user-specific installation.
+After that, you can put the fonts in the `/usr/share/fonts/` directory for global installation
+or `~/.local/share/fonts` for user-specific installation.
 
 Run `fc-cache -fr` to refresh the font cache.
 
-If you want to change wallpaper, use [setwall](bin/setwall) as the handler. This will handle the background transition and backdrop blurring instead of doing it manually:
+### 4. Set wallpaper
+
+If you want to change wallpaper, use [setwall](bin/setwall) as the handler.
+This will handle the background image and backdrop blurring. Persistent after reboot without aditional startup services
+(handled by `awww-daemon` and `wbg` startup).
+
 ```bash
 # Assuming you're in the same directory as 'setwall'
+# cd ~/.local/bin
+
 # Usage: ./setwall <image_path>
 ./setwall ~/Pictures/Wallpapers/mountains.png
+```
+
+### 5. Start timers and udev rules
+You can follow this instruction if you're on a laptop or desktop with a functioning battery. Otherwise, skip this.
+
+> [!WARNING]
+> If you're the 0.1% of the people that has more than one battery device, this method is unsupported because i can't test it properly.
+> Consider using other scripts that supports this.
+
+> [!TIP]
+> For non-systemd users, adjust accordingly to your init system of choice.
+>
+> The timer runs [battery-charging](bin/battery-charging) every 5 seconds.
+> The `udev` rule checks your `power_supply` subsystem and runs [battery-alert](bin/battery-alert)
+> with input `0` as unplugged and `1` as plugged in. 
+
+If you do anything different for the [`bin`](bin/) directory, adjust the paths accordingly.
+
+To start the `systemd-timer`, make sure the [timer and service](configs/systemd/user/) are placed in `~/.config/systemd/user/`.
+
+```bash
+# Confirm if battery-alert.* exists
+ls ~/.config/systemd/user/
+```
+
+Activate `battery-alert.timer` on the user level, doesn't need root privileges.
+
+```bash
+systemctl enable --now --user battery-alert.timer
+```
+
+To start the `systemd-udevd` rules, make sure the [udev rules](udev/) are placed in `/etc/udev/rules.d`.
+
+```bash
+# If you haven't copied the udev rules, follow this instruction.
+# udev rules requires root privileges
+# sudo cp udev/ /etc/udev/rules.d/
+
+# Confirm if *.rules exists
+ls /etc/udev/rules.d/
+```
+
+The `udev` rules needs extra configurations. Inside the [99-powersupply.rules](udev/99-powersupply.rules),
+theres a template `USER` that you need to change accordingly. Use your favorite code editor in `/etc/udev/rules.d/99-powersupply.rules` as root,
+or run the following command:
+
+```bash
+# udev rules requires root privileges
+sudo sed -i "s/USER/$(logname)/g" /etc/udev/rules.d/99-powersupply.rules
+```
+
+Run the following to reload `udev` rules:
+
+```bash
+# udevadm requires root privileges
+sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
