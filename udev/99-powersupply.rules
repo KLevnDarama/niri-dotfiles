@@ -1,0 +1,2 @@
+ACTION=="change", SUBSYSTEM=="power_supply", ATTRS{type}=="Mains", ATTRS{online}=="0", RUN+="/usr/bin/systemd-run --machine=USER@.host --user /home/USER/.local/bin/battery-charging 0"
+ACTION=="change", SUBSYSTEM=="power_supply", ATTRS{type}=="Mains", ATTRS{online}=="1", RUN+="/usr/bin/systemd-run --machine=USER@.host --user /home/USER/.local/bin/battery-charging 1"
