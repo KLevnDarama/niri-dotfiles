@@ -17,7 +17,7 @@ just tad bit of personal touches with brighter colors and less jaring background
 </details>
 
 <details>
-  <summary>Lockscreen</summary>
+  <summary>Lock screen</summary>
   <img width="1920" height="1080" alt="Lockscreen" src="https://github.com/user-attachments/assets/f04c308e-f24f-4b60-a053-8185d12b6b0f" />
 </details>
 
@@ -45,10 +45,10 @@ yay -S wlogout # Or use your favorite AUR helper
 ### 2. Cloning and Moving
 
 > [!CAUTION]
-> Before moving files into the designated directories. Makes sure to backup ALL of your existing data as
+> Before moving files into the designated directories, make sure to backup ALL of your existing data as
 > this is a destructive action with no prior warning.
 
-To use this dotfiles, you can clone this repo and move the directory accordingly:
+To use this dotfiles, you can clone this repo and move the files accordingly:
 
 ```bash
 git clone https://github.com/KLevnDarama/niri-dotfiles/ --depth 1
@@ -65,7 +65,7 @@ mv bin/ ~/.local/bin
 sudo cp udev/ /etc/udev/rules.d
 ```
 
-The lock screen will look for `.face` in your `$HOME` directory. Consider cropping a profile picture into a 1:1 ratio and set the name as `.face`
+The lock screen will look for `.face` in your `$HOME` directory. Consider cropping a profile picture into a 1:1 ratio and set the name as `.face`.
 
 ### 3. Fonts
 
