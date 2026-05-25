@@ -1,20 +1,28 @@
 #!/bin/bash
 
-INPUT_IMG="$1"
+input_img="$1"
 
-if [ -z "$INPUT_IMG" ]; then
-    echo "Usage: $0 <image_path>"
-    exit 1
+if [ -z "$input_img" ]; then
+   echo "Usage: $0 <image_path>"
+   exit 1
 fi
 
-awww img --transition-type wipe --transition-duration 1 "$INPUT_IMG" &
+if [[ "$input_img" == *.* ]]; then
+   ext=".${input_img##*.}"
+else
+   ext=""
+fi
 
-TMP_IMG="/tmp/backdrop_unblurred"
-BLURRED_IMG="$HOME/.cache/backdrop_blurred"
-cp "$INPUT_IMG" "$TMP_IMG"
-magick "$TMP_IMG" -resize 25% -blur 0x10 "$BLURRED_IMG"
+awww img --transition-type wipe --transition-duration 1 "$input_img" &
+
+tmp_img="/tmp/backdrop_unblurred${ext}" # tmp_img used to prevent corruption on input_img (for some reason?)
+blurred_img="$HOME/.cache/backdrop_blurred${ext}"
+
+cp "$input_img" "$tmp_img"
+magick "$tmp_img" -resize 25% -blur 0x16 "$blurred_img"
 
 pgrep wbg &>/dev/null && killall wbg
-wbg -s "$BLURRED_IMG" &>/dev/null 2>$1 &
+wbg -s "$blurred_img" &>/dev/null &
 
-rm "$TMP_IMG"
+rm "$tmp_img"
+ln -sf "$blurred_img" "$HOME/.cache/backdrop_blurred"
