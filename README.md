@@ -38,7 +38,7 @@ These are the packages for this dotfile:
 
 ```bash
 pacman -S niri awww rofi rofi-calc rofi-emoji waybar swayosd swaync hyprlock hypridle wbg bc # Required
-pacman -S cava fastfetch fish foot neovim # Optional, some needs extra configuration
+pacman -S cava fastfetch fish foot # Optional, some needs extra configuration
 yay -S wlogout # Or use your favorite AUR helper
 ```
 
