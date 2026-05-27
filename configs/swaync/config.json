@@ -95,7 +95,7 @@
             },
             {
                "label": "󰐥",
-               "command": "sh -c 'swaync-client -cp && wlogout -b 6'"
+               "command": "sh -c 'swaync-client -cp && ~/.local/bin/rofi-power'"
             }
          ]
       }

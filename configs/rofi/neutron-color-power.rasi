@@ -1,0 +1,103 @@
+* {
+   /* Global colors */
+   white: #efefef;
+   outline: #515766;
+
+   bg0: #25252f;
+   bg1: #2f2f3b;
+   bg2: #3d3d4d;
+   fg0: @white;
+   fg1: @bg0;
+
+   red: #ff25a5;
+   orange: #ffaa00;
+   yellow: #efef00;
+   green: #00ff7b;
+   blue: #71acfc;
+
+   /* Root stylesheet */
+   accent: @blue;
+   urgent: @orange;
+
+   background-color: transparent;
+   font: "FiraCode Nerd Font 12";
+   color: @fg0;
+}
+
+
+configuration {
+   dmenu {
+      display-name: "Power ";
+   }
+}
+
+//@theme "~/.config/rofi/config.rasi"
+/* Stylesheet is structured based on the default hierarchy
+See:
+https://davatorium.github.io/rofi/current/rofi-theme.5/#base-widgets
+https://davatorium.github.io/rofi/current/rofi-theme.5/#basic-layout-structure
+*/
+
+window {
+   location: center;
+   width: 65%;
+   padding: 0;
+
+   border: 1px solid;
+   border-color: @outline;
+   border-radius: 13px;
+
+   background-color: @bg0;
+}
+
+mainbox {
+   children: [listview];
+}
+
+prompt, entry, textbox, element-text, element-icon {
+   vertical-align: 0.5;
+}
+
+/* listview */
+listview {
+   columns: 6;
+   lines: 1;
+   dynamic: true;
+   fixed-height: false;
+   fixed-columns: true;
+   padding: 0;
+   flow: horizontal;
+   scrollbar: false; // optional scrollbar
+   border: none;
+}
+scrollbar {
+   handle-color: @bg2;
+   handle-rounded-corners: true;
+}
+element {
+   padding: 4em 0;
+   spacing: 2.5em;
+   orientation: vertical;
+}
+element normal.normal, element alternate.normal {
+   background-color: @bg0;
+   color: @fg0;
+}
+element selected.normal, element selected.active {
+   background-color: @bg1;
+   border-radius: 8px;
+   color: @fg0;
+}
+element-text {
+   text-color: inherit;
+   horizontal-align: 0.5;
+}
+element-icon {
+   size: 4.2em;
+}
+
+/* error-message */
+error-message {
+   background-color: @bg1;
+   padding: 0.3em 0em;
+}

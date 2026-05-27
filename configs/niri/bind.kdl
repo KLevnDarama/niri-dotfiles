@@ -4,8 +4,8 @@ binds {
    Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
    Mod+N hotkey-overlay-title="Open a File Manager: Nemo" { spawn "nemo"; }
    Mod+D hotkey-overlay-title="Run an Application: Rofi" { spawn-sh "pgrep rofi &>/dev/null && killall rofi || rofi -show"; }
-   Mod+M hotkey-overlay-title="Select an Emoji: Rofi Emoji" { spawn-sh "pgrep rofi &>/dev/null && killall rofi || rofi -modi emoji -show emoji -emoji-format '{emoji}' -emoji-mode copy -config ~/.config/rofi/neutron-color-emoji.rasi"; }
-   Mod+L hotkey-overlay-title="Logout Menu: Wlogout" { spawn-sh "pgrep wlogout >/dev/null 2>&1 && killall wlogout || wlogout -b 6"; }
+   Mod+M hotkey-overlay-title="Select an Emoji: Rofi Emoji" { spawn-sh "pgrep rofi &>/dev/null && killall rofi || rofi -modi emoji -show emoji -emoji-format '{emoji}' -emoji-mode copy -theme ~/.config/rofi/neutron-color-emoji.rasi"; }
+   Mod+L hotkey-overlay-title="Power Menu" { spawn-sh "pgrep rofi >/dev/null 2>&1 && killall rofi || ~/.local/bin/rofi-power"; }
    Mod+P hotkey-overlay-title="Open Notification Center: SwayNC" repeat=false { spawn "swaync-client" "-t" "-sw"; }
 
    Print { screenshot; }

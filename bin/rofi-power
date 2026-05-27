@@ -1,0 +1,35 @@
+#! /bin/bash
+
+ICON_DIR="$HOME/.config/rofi/icons"
+
+shutdown="Shutdown"
+icon_shutdown="$ICON_DIR/shutdown.svg"
+
+reboot="Reboot"
+icon_reboot="$ICON_DIR/reboot.svg"
+
+lock="Lock"
+icon_lock="$ICON_DIR/lock.svg"
+
+suspend="Suspend"
+icon_suspend="$ICON_DIR/suspend.svg"
+
+hibernate="Hibernate"
+icon_hibernate="$ICON_DIR/hibernate.svg"
+
+logout="Logout"
+icon_logout="$ICON_DIR/logout.svg"
+
+icon="\0icon\x1f"
+
+chosen=$(echo -en "$shutdown$icon$icon_shutdown\n$reboot$icon$icon_reboot\n$lock$icon$icon_lock\n$suspend$icon$icon_suspend\n$hibernate$icon$icon_hibernate\n$logout$icon$icon_logout" | rofi -dmenu -show-icons -theme ~/.config/rofi/neutron-color-power.rasi)
+
+case "$chosen" in
+   "$shutdown") systemctl poweroff ;;
+   "$reboot") systemctl reboot ;;
+   "$lock") loginctl lock-session ;;
+   "$suspend") systemctl suspend-then-hibernate ;;
+   "$hibernate") systemctl hibernate ;;
+   "$logout") niri msg action quit --skip-confirmation ;;
+   *) exit 1 ;;
+esac
