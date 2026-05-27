@@ -1,4 +1,4 @@
-<img width="1386" height="508" alt="image" src="https://github.com/user-attachments/assets/857a7225-6a0f-4f7f-9eff-5c5242eb40ef" /># Apajadah's niri-dotfiles
+# Apajadah's niri-dotfiles
 
 ![Niri](https://img.shields.io/badge/Niri-D55C44?style=for-the-badge&logo=niri&logoColor=white&color=%23D55C44)
 ![Wayland](https://img.shields.io/badge/Wayland-FFBC00?style=for-the-badge&logo=wayland&logoColor=black&color=%23FFBC00)
