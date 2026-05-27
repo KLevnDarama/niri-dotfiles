@@ -94,6 +94,7 @@ scrollbar {
 element {
    padding: 0.35em 0.85em;
    spacing: 0.25em;
+   children: [ element-text ];
 }
 element normal.normal, element alternate.normal {
    background-color: @bg0;
