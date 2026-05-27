@@ -21,11 +21,6 @@ just tad bit of personal touches with brighter colors and less jaring background
   <img width="1920" height="1080" alt="Lockscreen" src="https://github.com/user-attachments/assets/f04c308e-f24f-4b60-a053-8185d12b6b0f" />
 </details>
 
-<details>
-  <summary>Wlogout</summary>
-  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/60e71457-fcc8-495b-88f1-b73ed8e20640" />
-</details>
-
 ## Installation
 
 > [!IMPORTANT]
@@ -39,7 +34,6 @@ These are the packages for this dotfile:
 ```bash
 pacman -S niri awww rofi rofi-calc rofi-emoji waybar swayosd swaync hyprlock hypridle wbg bc # Required
 pacman -S cava fastfetch fish foot # Optional, some needs extra configuration
-yay -S wlogout # Or use your favorite AUR helper
 ```
 
 ### 2. Cloning and Moving
