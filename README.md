@@ -1,4 +1,4 @@
-# Apajadah's niri-dotfiles
+<img width="1386" height="508" alt="image" src="https://github.com/user-attachments/assets/857a7225-6a0f-4f7f-9eff-5c5242eb40ef" /># Apajadah's niri-dotfiles
 
 ![Niri](https://img.shields.io/badge/Niri-D55C44?style=for-the-badge&logo=niri&logoColor=white&color=%23D55C44)
 ![Wayland](https://img.shields.io/badge/Wayland-FFBC00?style=for-the-badge&logo=wayland&logoColor=black&color=%23FFBC00)
@@ -19,6 +19,11 @@ just tad bit of personal touches with brighter colors and less jaring background
 <details>
   <summary>Lock screen</summary>
   <img width="1920" height="1080" alt="Lockscreen" src="https://github.com/user-attachments/assets/f04c308e-f24f-4b60-a053-8185d12b6b0f" />
+</details>
+
+<details>
+  <summary>Rofi power menu</summary>
+  <img width="1386" height="508" alt="Rofi power menu" src="https://github.com/user-attachments/assets/c119e863-4ca5-4cb1-8beb-c876ce766a67" />
 </details>
 
 ## Installation
