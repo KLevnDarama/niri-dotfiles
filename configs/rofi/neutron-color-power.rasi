@@ -84,8 +84,8 @@ element normal.normal, element alternate.normal {
    color: @fg0;
 }
 element selected.normal, element selected.active {
+   border-radius: 13px;
    background-color: @bg1;
-   border-radius: 8px;
    color: @fg0;
 }
 element-text {
